@@ -7,3 +7,26 @@ export async function GET(_request: Request, {params}: {params: Promise<{id: str
 return  Response.json(comment)
 
 }
+export async function PATCH(request: Request, {params}: {params: Promise<{id: string}>}){
+
+    const {id}  = await params;
+    const body  = await request.json()
+    const index:number = comments.findIndex((com)=> com.id == parseInt(id))
+    const {text} = body
+    comments[index].text =text
+
+    return Response.json(comments[index])
+
+}
+
+export async function DELETE(
+    _request: Request, {params} : {params: Promise<{id: string}>}
+){
+    const idToDelete = (await params).id
+    const index= comments.findIndex((com)=> com.id===parseInt(idToDelete))
+    const deletedComment = comments[index]
+    comments.splice(index,1)
+
+    return Response.json(deletedComment)
+
+}
