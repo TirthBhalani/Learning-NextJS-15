@@ -1,3 +1,7 @@
-export default function reviews(){
+import notFound from "@/app/not-found"
+export default function reviews(
+   
+){
+    
     return <h1>This page lists all the reviews for this product</h1>
 }
